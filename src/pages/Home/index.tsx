@@ -15,7 +15,8 @@ const Home = () => {
       title:
         'Console error: Warning: Each child in a list should have a unique "key" prop.',
       description:
-        "Hope you are able to find what is causing this error, as it is annoying."
+        "Hope you are able to find what is causing this error, as it is annoying.",
+      completed: true
     },
     {
       id: "bold-known-word",
@@ -70,6 +71,9 @@ const Home = () => {
               <ListItemText
                 primary={issue.title}
                 secondary={issue.description}
+                sx={{
+                  textDecoration: issue.completed ? "line-through" : "none",
+                }}
               />
             </ListItem>
           ))}
