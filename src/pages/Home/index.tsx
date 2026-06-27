@@ -33,7 +33,8 @@ const Home = () => {
       title:
         "User avatar in app bar is missing, although user should be fetched on app start correctly.",
       description:
-        "On app start we load the current user object via a MobX store, but for any reason the user avatar is not displayed in the top right of the app bar. Attention: When solving this issue, you might will be confronted with a second bug."
+        "On app start we load the current user object via a MobX store, but for any reason the user avatar is not displayed in the top right of the app bar. Attention: When solving this issue, you might will be confronted with a second bug.",
+      completed: true
     },
     {
       id: "broken-countdown",
