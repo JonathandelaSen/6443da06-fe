@@ -24,7 +24,8 @@ const Home = () => {
       title:
         'The word "known" should be displayed bold in the introduction text.',
       description:
-        "When implementing a solution, please ensure to not change the i18n text."
+        "When implementing a solution, please ensure to not change the i18n text.",
+      completed: true
     },
     {
       id: "missing-user-avatar",
