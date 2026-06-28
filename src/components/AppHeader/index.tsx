@@ -38,15 +38,18 @@ const AppHeader = React.forwardRef((props: AppHeaderProps, ref) => {
   const hours = 1;
   const minutes = hours * 60;
   const seconds = minutes * 60;
-  const countdown = seconds - count;
+  const finished = count >= seconds;
+  const countdown = Math.max(seconds - count, 0);
   const countdownMinutes = `${~~(countdown / 60)}`.padStart(2, "0");
   const countdownSeconds = (countdown % 60).toFixed(0).padStart(2, "0");
 
   useEffect(() => {
-    setInterval(() => {
+    if (finished) return;
+    const id = setInterval(() => {
       setCount((c) => c + 1);
     }, 1000);
-  }, []);
+    return () => clearInterval(id);
+  }, [finished]);
 
   return (
     <AppBar ref={ref} position="fixed" sx={{ width: "100vw" }}>
