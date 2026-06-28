@@ -1,1 +1,43 @@
-{}
+{
+  "logout": "Abmelden",
+  "appTitle": "Lieferanten-OS-Anwendung",
+  "language": {
+    "label": "Sprache"
+  },
+  "avatarMenu": {
+    "editProfile": "Profil bearbeiten",
+    "editOrganization": "Organisation bearbeiten",
+    "dataPrivacy": "Datenschutzerklärung",
+    "imprint": "Impressum"
+  },
+  "routes": {
+    "/home": "Bug-Bounty-Challenge"
+  },
+  "home": {
+    "welcome": "Willkommen!",
+    "intro": "Dies ist eine Demo-Anwendung mit einigen Störungen und Fehlern, von denen wir hoffen, dass du sie findest. 😃 Hier ist die Liste der <b>bekannten</b> Probleme:",
+    "sidenote": "Alle Fehler haben einen unterschiedlichen Schwierigkeitsgrad und kommen in der Praxis häufig vor. Um alle offenen Punkte zu lösen, sind verschiedene Fähigkeiten gefragt: Recherche, Erfahrung, das Lesen von Dokumentationen und Fehlermeldungen sowie Kreativität und analytisches Denken.",
+    "issues": {
+      "missing-key-prop": {
+        "title": "Konsolenfehler: Warnung: Jedes Element in einer Liste sollte eine eindeutige \"key\"-Eigenschaft haben.",
+        "description": "Finde bitte heraus, wodurch dieser lästige Fehler verursacht wird."
+      },
+      "bold-known-word": {
+        "title": "Das Wort \"bekannten\" im Einführungstext sollte fett dargestellt werden.",
+        "description": "Achte bei der Umsetzung darauf, den i18n-Text nicht zu verändern."
+      },
+      "missing-user-avatar": {
+        "title": "Der Benutzeravatar fehlt in der App-Leiste, obwohl der Benutzer beim Start korrekt geladen werden sollte.",
+        "description": "Beim Start der App laden wir den aktuellen Benutzer über einen MobX-Store. Aus irgendeinem Grund wird der Avatar jedoch nicht oben rechts in der App-Leiste angezeigt. Achtung: Beim Lösen dieses Problems könnte ein zweiter Fehler auftauchen."
+      },
+      "broken-countdown": {
+        "title": "Optional: Der Countdown funktioniert manchmal nicht richtig (schwer zu reproduzieren).",
+        "description": "Einige Entwickler haben berichtet, dass sich der Countdown in der App-Leiste gelegentlich merkwürdig verhält. Leider ließ sich der Fehler bisher nicht zuverlässig reproduzieren – vielleicht findest du die Ursache."
+      },
+      "language-switcher": {
+        "title": "Optional: Die Sprache der Benutzeroberfläche wechseln",
+        "description": "Füge in der App-Leiste eine Sprachauswahl hinzu, mit der die Benutzeroberfläche zwischen Englisch und Deutsch umgeschaltet werden kann."
+      }
+    }
+  }
+}

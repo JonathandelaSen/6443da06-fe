@@ -87,7 +87,7 @@ const AvatarMenu = React.forwardRef<HTMLDivElement, AvatarMenuProps>((props, ref
             color="primary"
             size="medium"
           >
-            Edit Profile
+            {t("avatarMenu.editProfile")}
           </Button>
         </Box>
         <Box
@@ -106,7 +106,7 @@ const AvatarMenu = React.forwardRef<HTMLDivElement, AvatarMenuProps>((props, ref
           >
             <Icon path={mdiTag} size={0.75} />
             <Box m={0.5} />
-            Edit Organization
+            {t("avatarMenu.editOrganization")}
           </Button>
         </Box>
         <Divider />
@@ -129,7 +129,7 @@ const AvatarMenu = React.forwardRef<HTMLDivElement, AvatarMenuProps>((props, ref
               textTransform: "none"
             }}
           >
-            Data Privacy Statement
+            {t("avatarMenu.dataPrivacy")}
           </Button>
           <Button
             variant="text"
@@ -139,7 +139,7 @@ const AvatarMenu = React.forwardRef<HTMLDivElement, AvatarMenuProps>((props, ref
               textTransform: "none"
             }}
           >
-            Imprint
+            {t("avatarMenu.imprint")}
           </Button>
         </Box>
       </Menu>
