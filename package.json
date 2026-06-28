@@ -8,6 +8,9 @@
     "starter"
   ],
   "main": "src/index.tsx",
+  "engines": {
+    "node": ">=24 <25"
+  },
   "dependencies": {
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
