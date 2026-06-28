@@ -42,6 +42,29 @@ Fixes (`src/components/AppHeader/index.tsx`):
 - Clamp the displayed value with `Math.max(seconds - count, 0)` so it never
   renders negative numbers.
 
+## Optional feature
+
+### 5. Language switcher
+Added a language select control to the app bar so the UI can be switched
+between English and German.
+
+- **Control (`src/components/AppHeader/index.tsx`):** a button with a translate
+  icon showing the active language opens a MUI `<Menu>` listing *English* and
+  *Deutsch*, with a check mark next to the current one. Selecting an entry calls
+  `i18n.changeLanguage`.
+- **Preference resolution and persistence
+  (`src/i18n/languagePreference.ts`):** the chosen locale is normalized to a
+  supported language (`en`/`de`) and stored in `localStorage` under
+  `osapiens.uiLanguage`, guarded so the app still switches when storage is
+  unavailable. Helpers also read the stored preference and detect the browser
+  language.
+- **i18n wiring (`src/i18n/i18n.tsx`):** the initial language is resolved as
+  stored preference → browser language → fallback (`en`). A `languageChanged`
+  listener persists the new preference and updates `document.documentElement.lang`.
+- **Translations (`src/i18n/locales/en.json`, `de.json`):** German strings were
+  added for the home page and app chrome so the UI fully reflects the selected
+  language.
+
 ## Notes
 
 The Create React App ESLint configuration was added to `package.json` so
