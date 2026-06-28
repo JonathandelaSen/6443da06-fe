@@ -3,18 +3,21 @@
 ## Bug fixes
 
 ### 1. Missing `key` prop in the issue list
+
 Each child in a list needs a stable, unique `key`. The issues were rendered
 without one, triggering the React console warning. Fixed by giving every issue
 object an `id` and using it as the `key` on each `<ListItem>`.
 (`src/pages/Home/index.tsx`)
 
 ### 2. The word "known" was not displayed in bold
+
 The intro text carries `<b>` markup, but it was rendered with `t("home.intro")`,
 which outputs a plain string, so the markup never became real DOM. Replaced it
 with the `<Trans>` component mapping `b` → `<strong />`, **without changing the
 i18n text**. (`src/pages/Home/index.tsx`)
 
 ### 3. User avatar missing in the app bar (two bugs)
+
 - **Typo in the store:** `getOwnUser` assigned the result to `this.urser`
   instead of `this.user`, so the user was never actually stored and the avatar
   had no data. (`src/api/services/User/store.ts`)
@@ -24,6 +27,7 @@ i18n text**. (`src/pages/Home/index.tsx`)
   the `ref` to its root element. (`src/components/AvatarMenu/index.tsx`)
 
 ### 4. Countdown breaking "sometimes"
+
 The `setInterval` in the header was created inside a `useEffect` with **no
 cleanup**. Whenever the effect re-ran (HMR during development, a remount, or
 React 18 StrictMode's double-mount), a new interval was added while the old one
@@ -32,6 +36,7 @@ unmount the orphaned timers also kept firing (memory/CPU leak). Because it only
 surfaced via HMR, it looked random and impossible to reproduce reliably.
 
 Fixes (`src/components/AppHeader/index.tsx`):
+
 - Return `() => clearInterval(id)` from the effect → an idempotent
   subscription: always exactly one live interval, and it is cancelled on
   unmount.
@@ -42,15 +47,14 @@ Fixes (`src/components/AppHeader/index.tsx`):
 - Clamp the displayed value with `Math.max(seconds - count, 0)` so it never
   renders negative numbers.
 
-## Optional feature
-
 ### 5. Language switcher
+
 Added a language select control to the app bar so the UI can be switched
 between English and German.
 
 - **Control (`src/components/AppHeader/index.tsx`):** a button with a translate
-  icon showing the active language opens a MUI `<Menu>` listing *English* and
-  *Deutsch*, with a check mark next to the current one. Selecting an entry calls
+  icon showing the active language opens a MUI `<Menu>` listing _English_ and
+  _Deutsch_, with a check mark next to the current one. Selecting an entry calls
   `i18n.changeLanguage`.
 - **Preference resolution and persistence
   (`src/i18n/languagePreference.ts`):** the chosen locale is normalized to a
