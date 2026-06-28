@@ -1,5 +1,3 @@
-# Frontend Technical Assessment
-
 ## Bug fixes
 
 ### 1. Missing `key` prop in the issue list
