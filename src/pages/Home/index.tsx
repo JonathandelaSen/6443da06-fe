@@ -41,7 +41,8 @@ const Home = () => {
       icon: "🐞",
       title: "Optional: Countdown is broken sometimes (hard to reproduce).",
       description:
-        "Some developers mentioned that the countdown in the app header behaves strange sometimes, but unfortunately they were not able to reproduce this glitch reliably, maybe you find the root cause."
+        "Some developers mentioned that the countdown in the app header behaves strange sometimes, but unfortunately they were not able to reproduce this glitch reliably, maybe you find the root cause.",
+      completed: true
     },
     {
       id: "language-switcher",
