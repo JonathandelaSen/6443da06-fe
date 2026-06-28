@@ -43,7 +43,7 @@ const stringAvatar = (user: User) => {
   };
 };
 
-const AvatarMenu = (props: AvatarMenuProps) => {
+const AvatarMenu = React.forwardRef<HTMLDivElement, AvatarMenuProps>((props, ref) => {
   const { user } = props;
   const theme = useTheme();
   const { t } = useTranslation("app");
@@ -58,7 +58,7 @@ const AvatarMenu = (props: AvatarMenuProps) => {
   // const history = useHistory();
 
   return (
-    <div>
+    <div ref={ref}>
       <Avatar onClick={handleClick} {...stringAvatar(user)} />
       <Menu
         id="demo-positioned-menu"
@@ -87,7 +87,7 @@ const AvatarMenu = (props: AvatarMenuProps) => {
             color="primary"
             size="medium"
           >
-            Edit Profile
+            {t("avatarMenu.editProfile")}
           </Button>
         </Box>
         <Box
@@ -106,7 +106,7 @@ const AvatarMenu = (props: AvatarMenuProps) => {
           >
             <Icon path={mdiTag} size={0.75} />
             <Box m={0.5} />
-            Edit Organization
+            {t("avatarMenu.editOrganization")}
           </Button>
         </Box>
         <Divider />
@@ -129,7 +129,7 @@ const AvatarMenu = (props: AvatarMenuProps) => {
               textTransform: "none"
             }}
           >
-            Data Privacy Statement
+            {t("avatarMenu.dataPrivacy")}
           </Button>
           <Button
             variant="text"
@@ -139,12 +139,14 @@ const AvatarMenu = (props: AvatarMenuProps) => {
               textTransform: "none"
             }}
           >
-            Imprint
+            {t("avatarMenu.imprint")}
           </Button>
         </Box>
       </Menu>
     </div>
   );
-};
+});
+
+AvatarMenu.displayName = "AvatarMenu";
 
 export default AvatarMenu;

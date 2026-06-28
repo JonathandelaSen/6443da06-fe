@@ -1,10 +1,18 @@
 import i18n from "i18next";
 import { cloneDeep } from "lodash";
 import { initReactI18next } from "react-i18next";
+import {
+  DEFAULT_LANGUAGE,
+  getBrowserLanguage,
+  getLanguagePreference,
+  normalizeLanguage,
+  setLanguagePreference,
+  SUPPORTED_LANGUAGES
+} from "./languagePreference";
 import de from "./locales/de.json";
 import en from "./locales/en.json";
 
-export const FALLBACK_LANGUAGE = "en";
+export const FALLBACK_LANGUAGE = DEFAULT_LANGUAGE;
 
 export interface Language {
   locale: string;
@@ -12,19 +20,12 @@ export interface Language {
   icon: JSX.Element;
 }
 
-const getBrowserLanguage = () => {
-  // @ts-ignore
-  const userLang = navigator.language || navigator.userLanguage;
+const translations = { en, de };
 
-  return userLang ? userLang.split("-")[0] : FALLBACK_LANGUAGE;
-};
-
-const browserLanguage = getBrowserLanguage();
-
-export const defaultTranslationModules = [
-  { locale: "de", texts: de },
-  { locale: "en", texts: en }
-];
+export const defaultTranslationModules = SUPPORTED_LANGUAGES.map((locale) => ({
+  locale,
+  texts: translations[locale]
+}));
 export const defaultLanguages = defaultTranslationModules.map((m) => m.locale);
 
 const resources = cloneDeep(
@@ -32,6 +33,17 @@ const resources = cloneDeep(
     defaultTranslationModules.map((m) => [m.locale, { app: m.texts }])
   )
 );
+
+i18n.on("languageChanged", (language) => {
+  const locale = normalizeLanguage(language);
+  if (!locale) return;
+
+  setLanguagePreference(locale);
+
+  if (typeof document !== "undefined") {
+    document.documentElement.lang = locale;
+  }
+});
 
 i18n
   // pass the i18n instance to react-i18next.
@@ -43,7 +55,7 @@ i18n
     resources,
     ns: ["common", "app"],
     defaultNS: "app",
-    lng: FALLBACK_LANGUAGE || browserLanguage,
+    lng: getLanguagePreference() || getBrowserLanguage() || FALLBACK_LANGUAGE,
     fallbackLng: FALLBACK_LANGUAGE,
     interpolation: {
       escapeValue: false // not needed for react as it escapes by default
